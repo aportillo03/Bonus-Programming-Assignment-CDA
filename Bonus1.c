@@ -19,8 +19,8 @@ void read_traces(const char* filename, CacheBlock cache[], int num_blocks, int s
 int access_cache(CacheBlock cache[], int num_blocks, unsigned int tag, int set_associativity, int replacement_policy);
 
 int main() {
-
-    // Initialize and access each cache type
+    
+    // Define cache types
     CacheBlock direct_mapped[NUM_BLOCKS];
     CacheBlock two_way[NUM_BLOCKS / 2][2];
     CacheBlock four_way[NUM_BLOCKS / 4][4];
@@ -46,11 +46,13 @@ int main() {
     printf("\n4-Way Set Associative Cache (Random):\n");
     read_traces("traces.txt", (CacheBlock*)four_way, NUM_BLOCKS / 4, 4, RANDOM_POLICY);
 //
-  printf("\nFully Associative Cache (LRU):\n");
-  read_traces("traces.txt", fully_associative, NUM_BLOCKS, NUM_BLOCKS, LRU_POLICY);
+    printf("\nFully Associative Cache (LRU):\n");
+    read_traces("traces.txt", fully_associative, NUM_BLOCKS, NUM_BLOCKS, LRU_POLICY);
 //
-  printf("\nFully Associative Cache (Random):\n");
-  read_traces("traces.txt", fully_associative, NUM_BLOCKS, NUM_BLOCKS, RANDOM_POLICY);
+    printf("\nFully Associative Cache (Random):\n");
+    read_traces("traces.txt", fully_associative, NUM_BLOCKS, NUM_BLOCKS, RANDOM_POLICY);
+    
+    free(fully_associative);
 
     return 0;
 }
